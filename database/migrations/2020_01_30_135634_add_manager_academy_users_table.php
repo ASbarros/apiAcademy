@@ -14,7 +14,8 @@ class AddManagerAcademyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('managerAcademy');
+            $table->unsignedBigInteger('managerAcademy')->nullable(true);
+            $table->foreign('managerAcademy')->references('id')->on('academys');
         });
     }
 
@@ -27,8 +28,6 @@ class AddManagerAcademyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('managerAcademy');
-
-            $table->foreign('managerAcademy')->references('id')->on('academys');
         });
     }
 }

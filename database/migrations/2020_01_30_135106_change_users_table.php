@@ -14,7 +14,7 @@ class ChangeUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('idAcademy')->change();
+            $table->unsignedBigInteger('idAcademy')->nullable(true)->change();
         });
     }
 
