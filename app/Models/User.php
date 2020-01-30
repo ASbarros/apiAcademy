@@ -13,7 +13,7 @@ class User extends Model
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'cpf', 'active'
+        'name', 'email', 'cpf', 'active', 'managerAcademy'
     ];
 
     protected $hidden = [

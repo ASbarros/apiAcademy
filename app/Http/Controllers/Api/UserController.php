@@ -37,6 +37,7 @@ class UserController extends Controller
         $this->User->pswd = $data['cpf'];
         $this->User->name = $data['name'];
         $this->User->idAcademy = $request['idAcademy'];
+        $this->User->namagerAcademy = $request['managerAcademy'];
         $this->User->email = $data['email'];
         $this->User->cpf = $data['cpf'];
 
@@ -78,6 +79,7 @@ class UserController extends Controller
         $User->pswd = $data['pswd'];
         $User->name = $data['name'];
         $User->idAcademy = $data['idAcademy'];
+        $User->managerAcademy = $data['managerAcademy'];
         $User->email = $data['email'];
         $User->cpf = $data['cpf'];
 
