@@ -13,7 +13,7 @@ class User extends Model
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'cpf', 'active', 'managerAcademy'
+        'name', 'email', 'cpf', 'active', 'managerAcademysss'
     ];
 
     protected $hidden = [
@@ -25,6 +25,24 @@ class User extends Model
         return $this->belongsToMany('App\Models\Group', 'users_groups', 'idUsers', 'idGroups')
             ->withPivot('idUsers', 'idGroups')
             ->withTimestamps();
+    }
+
+    public function isDeveloper()
+    {
+        $Groups = $this->getGroups;
+        foreach ($Groups as $key => $value) {
+            if (strcmp('Desenvolvedor', $value->desc) == 0) return true;
+        }
+        return false;
+    }
+
+    public function isAdmin()
+    {
+        $Groups = $this->getGroups;
+        foreach ($Groups as $key => $value) {
+            if (strcmp('Administrador', $value->desc) == 0) return true;
+        }
+        return false;
     }
 
     public function validationFileds($data)

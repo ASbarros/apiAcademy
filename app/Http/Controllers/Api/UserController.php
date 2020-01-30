@@ -23,8 +23,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $idAcademy = $this->User->where('email', $this->EmailUser)->first()['idAcademy'];
-        return ['result' => $this->User->where('idAcademy', $idAcademy)->get()];
+        $this->User = $this->User->where('email', $this->EmailUser)->first();
+        if ($this->User->isDeveloper())
+            return ['result' => $this->User->all()];
+        if ($this->User->isAdmin())
+            return ['result' => $this->User->where('idAcademy', $this->User->managerAcademy)->get()];
     }
 
     public function store(Request $request)
