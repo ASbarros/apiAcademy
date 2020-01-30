@@ -13,11 +13,11 @@ class User extends Model
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'cpf', 'active', 'managerAcademysss'
+        'name', 'email', 'cpf', 'active', 'managerAcademysss', 'pswd'
     ];
 
     protected $hidden = [
-        'pswd', 'changePswd', 'created_at', 'updated_at'
+        'changePswd', 'created_at', 'updated_at'
     ];
 
     public function getGroups()

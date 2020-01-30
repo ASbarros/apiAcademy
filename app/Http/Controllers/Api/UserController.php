@@ -57,18 +57,22 @@ class UserController extends Controller
         return $Retorno;
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $id = null)
     {
-        $data = $request->all();
-        $User = User::findOrFail($id);
-        if (!$this->User->validationFileds($data)[0])
-            $this->User->validationFileds($data)[1];
-        $User->pswd = $data['pswd'];
-        $User->name = $data['name'];
-        $User->email = $data['email'];
-        $User->cpf = $data['cpf'];
+        if ($id) { 
+            $data = $request->all();
+            $User = User::findOrFail($id);
+            if (!$this->User->validationFileds($data)[0])
+                $this->User->validationFileds($data)[1];
+            $User->pswd = $data['pswd'];
+            $User->name = $data['name'];
+            $User->email = $data['email'];
+            $User->cpf = $data['cpf'];
 
-        $User->save();
+            $User->save();
+        } else {// $id undefined, return user ...
+            return ['result' => User::where('email', $this->EmailUser)->first()];
+        }
         return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
     }
 
