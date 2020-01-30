@@ -70,6 +70,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'Api\UserController@index');
     Route::get('/create', 'Api\UserController@create');
     Route::get('/{id}', 'Api\UserController@show');
+    Route::get('/edit/{id}', 'Api\UserController@edit');
     Route::put('/{id}', 'Api\UserController@update');
     Route::delete('/{id}', 'Api\UserController@destroy');
     Route::post('/', 'Api\UserController@store');

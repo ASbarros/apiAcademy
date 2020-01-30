@@ -57,6 +57,21 @@ class UserController extends Controller
         return $Retorno;
     }
 
+    public function edit(Request $request, $id)
+    {
+        $data = $request->all();
+        $User = User::findOrFail($id);
+        if (!$this->User->validationFileds($data)[0])
+            $this->User->validationFileds($data)[1];
+        $User->pswd = $data['pswd'];
+        $User->name = $data['name'];
+        $User->email = $data['email'];
+        $User->cpf = $data['cpf'];
+
+        $User->save();
+        return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
+    }
+
     public function show($id)
     {
         $Resultado = [];
