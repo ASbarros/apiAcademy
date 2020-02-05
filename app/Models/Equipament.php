@@ -9,7 +9,7 @@ class Equipament extends Model
     protected $table = 'equipaments';
 
     protected $fillable = [
-        'name', 'obs', 'id',
+        'name', 'obs', 'id', 'img'
     ];
 
     protected $hidden = ['created_at', 'updated_at'];

@@ -9,6 +9,7 @@ use App\Models\Measure;
 use App\Models\User;
 use App\Models\UsersGroups;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class UserController extends Controller
 {
@@ -59,7 +60,7 @@ class UserController extends Controller
 
     public function edit(Request $request, $id = null)
     {
-        if ($id) { 
+        if ($id) {
             $data = $request->all();
             $User = User::findOrFail($id);
             if (!$this->User->validationFileds($data)[0])
@@ -70,10 +71,10 @@ class UserController extends Controller
             $User->cpf = $data['cpf'];
 
             $User->save();
-        } else {// $id undefined, return user ...
+        } else { // $id undefined, return user ...
             return ['result' => User::where('email', $this->EmailUser)->first()];
         }
-        return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
+        return ['msg' => $request->img, 'color' => 'success'];
     }
 
     public function show($id)

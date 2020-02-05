@@ -43,6 +43,7 @@ class EquipamentController extends Controller
 
         $Equipament = Equipament::findOrFail($id);
         $Equipament->name = $request->name;
+        $Equipament->img = $request->img;
 
         if ($request->obs) $Equipament->obs = $request->obs;
         else $Equipament->obs = '';
