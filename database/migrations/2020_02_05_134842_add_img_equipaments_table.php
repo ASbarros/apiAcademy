@@ -14,7 +14,7 @@ class AddImgEquipamentsTable extends Migration
     public function up()
     {
         Schema::table('equipaments', function (Blueprint $table) {
-            $table->text('img')->nullable(true);
+            $table->mediumText('img')->nullable(true);
         });
     }
 
