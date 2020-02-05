@@ -34,7 +34,7 @@ class EquipamentController extends Controller
 
     public function show($id)
     {
-        return ['result' => Equipament::where('id', $id)->get()];
+        return ['result' => Equipament::where('id', $id)->first()];
     }
 
     public function update(Request $request, $id)
