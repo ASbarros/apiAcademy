@@ -67,7 +67,7 @@ class CardEquipamentController extends Controller
             $Retorno = [];
             foreach ($Equipaments as $i => $Equipament) {
                 $Retorno[$i]['equipament'] = Equipament::where('id', $Equipament->idEquipaments)
-                    ->select('name', 'id')
+                    ->select('name', 'img', 'id')
                     ->first();
                 $Retorno[$i]['dados'] = CardEquipament::where([
                     ['idEquipaments', $Equipament->idEquipaments],
