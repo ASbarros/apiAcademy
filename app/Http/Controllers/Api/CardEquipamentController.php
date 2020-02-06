@@ -90,21 +90,13 @@ class CardEquipamentController extends Controller
             ]);
 
             $this->CardEquipament->update(
-                ['rest' => $data['rest']]
+                [
+                    'rest' => $data['rest'],
+                    'repetition' => $data['repetition'],
+                    'weight' => $data['weight'],
+                    'side' => $data['side']
+                ]
             );
-
-            $this->CardEquipament->update(
-                ['repetition' => $data['repetition']]
-            );
-
-            $this->CardEquipament->update(
-                ['weight' => $data['weight']]
-            );
-
-            $this->CardEquipament->update(
-                ['side' => $data['side']]
-            );
-
             return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
         } else {
             foreach ($data as $i)
@@ -115,11 +107,14 @@ class CardEquipamentController extends Controller
                     ]);
 
                     $this->CardEquipament->update(
-                        ['weight' => $i['weight']]
+                        [
+                            'weight' => $i['weight'],
+                            'completed' =>  $i['completed']
+                        ]
                     );
-                    return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
                 }
         }
+        return ['msg' => 'Atualizado com sucesso', 'color' => 'success'];
     }
 
     public function destroy($idCard, $idEquipament)
