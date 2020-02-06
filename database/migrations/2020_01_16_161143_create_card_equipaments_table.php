@@ -20,6 +20,7 @@ class CreateCardEquipamentsTable extends Migration
             $table->integer('weight');
             $table->integer('series');
             $table->integer('repetition');
+            $table->tinyInteger('completed');
             $table->char('side', 1)->default('A');
             $table->timestamps();
 

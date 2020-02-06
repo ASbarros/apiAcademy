@@ -21,13 +21,14 @@ class CreateCardEquipamentsLogTable extends Migration
             $table->dateTime('date');
             $table->integer('weight');
             $table->integer('series');
+            $table->tinyInteger('completed');
             $table->integer('repetition');
             $table->char('side', 1)->default('A');
             $table->string('operation');
             $table->timestamps();
         });
-        DB::unprepared("CREATE TRIGGER `card_equipaments_AFTER_INSERT` AFTER INSERT ON `card_equipaments` FOR EACH ROW BEGIN insert into card_equipaments_log(idCard, idEquipaments, rest, weight, series, repetition, side, date, operation) values (new.idCard, new.idEquipaments, new.rest, new.weight, new.series, new.repetition, new.side, now(), 'INSERT');END");
-        DB::unprepared("CREATE TRIGGER `card_equipaments_AFTER_UPDATE` AFTER UPDATE ON `card_equipaments` FOR EACH ROW BEGIN insert into card_equipaments_log(idCard, idEquipaments, rest, weight, series, repetition, side, date, operation) values (new.idCard, new.idEquipaments, new.rest, new.weight, new.series, new.repetition, new.side, now(), 'UPDATE');END ");
+        DB::unprepared("CREATE TRIGGER `card_equipaments_AFTER_INSERT` AFTER INSERT ON `card_equipaments` FOR EACH ROW BEGIN insert into card_equipaments_log(idCard, idEquipaments, rest, weight, series, repetition, side, completed, date, operation) values (new.idCard, new.idEquipaments, new.rest, new.weight, new.series, new.repetition, new.side, new.completed, now(), 'INSERT');END");
+        DB::unprepared("CREATE TRIGGER `card_equipaments_AFTER_UPDATE` AFTER UPDATE ON `card_equipaments` FOR EACH ROW BEGIN insert into card_equipaments_log(idCard, idEquipaments, rest, weight, series, repetition, side, completed, date, operation) values (new.idCard, new.idEquipaments, new.rest, new.weight, new.series, new.repetition, new.side, new.completed, now(), 'UPDATE');END ");
     }
 
     /**
