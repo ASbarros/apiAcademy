@@ -33,14 +33,15 @@ class CardEquipamentController extends Controller
             $this->CardEquipament->series = $data['series'];
             $this->CardEquipament->weight = $data['weight'];
             $this->CardEquipament->side = $data['side'];
-            $this->CardEquipament->idCard = $data['idCard'];
+            $this->CardEquipament->idCard =  $data['idCard'];
+            $this->CardEquipament->completed = 0;
         } catch (\Throwable $th) {
             return ['msg' => 'Erro nos dados.', 'color' => 'warning'];
         }
         try {
             $this->CardEquipament->save();
         } catch (\Throwable $th) {
-            return ['msg' => 'Registro já existe', 'color' => 'warning'];
+            return ['data' => $this->CardEquipament, 'msg' => 'Registro já existe', 'color' => 'warning'];
         }
         return ['msg' => 'Criado com sucesso', 'color' => 'success'];
     }
