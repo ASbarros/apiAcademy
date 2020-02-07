@@ -84,6 +84,12 @@ class CardEquipamentController extends Controller
     {
         $data = $request->all();
         if ($idEquipament) {
+            try {
+                return CardEquipamentLogController::destroy($idCard, $idEquipament);
+            } catch (\Throwable $th) {
+                return ['msg' => 'Não foi possivél salvar.', 'color' => 'warning'];
+            }
+
             $this->CardEquipament = CardEquipament::where([
                 ['idCard', $idCard],
                 ['idEquipaments', $idEquipament]
@@ -101,6 +107,11 @@ class CardEquipamentController extends Controller
         } else {
             foreach ($data as $i)
                 if ($i) {
+                    try {
+                        CardEquipamentLogController::destroy($idCard, $i['idEquipament']);
+                    } catch (\Throwable $th) {
+                        throw $th;
+                    }
                     $this->CardEquipament = CardEquipament::where([
                         ['idCard', $idCard],
                         ['idEquipaments', $i['idEquipament']]
