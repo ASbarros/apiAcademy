@@ -11,7 +11,6 @@ class LoginController extends Controller
 {
 
     private $Desenvolvedor = [
-        ['title' => 'Home', 'url' => '/home', 'icon' => 'home'],
         ['title' => 'Aluno', 'url' => '/users-list', 'icon' => 'contact'],
         ['title' => 'Equipamento', 'url' => '/equipament-list', 'icon' => 'fitness'],
         ['title' => 'Fixa', 'url' => '/card-list', 'icon' => 'clipboard'],
@@ -19,24 +18,19 @@ class LoginController extends Controller
         ['title' => 'Aquecimento', 'url' => '/heating-list', 'icon' => 'body'],
         ['title' => 'Grupos', 'url' => '/group-list', 'icon' => 'people'],
         ['title' => 'Academias', 'url' => '/academy-list', 'icon' => 'construct'],
-        ['title' => 'Perfil', 'url' => '/perfil', 'icon' => 'contact']
     ];
 
     private $Administrador = [
-        ['title' => 'Home', 'url' => '/home', 'icon' => 'home'],
         ['title' => 'Aluno', 'url' => '/users-list', 'icon' => 'contact'],
         ['title' => 'Equipamento', 'url' => '/equipament-list', 'icon' => 'fitness'],
         ['title' => 'Fixa', 'url' => '/card-list', 'icon' => 'clipboard'],
         ['title' => 'Objetivo', 'url' => '/goal-list', 'icon' => 'trending-up'],
         ['title' => 'Aquecimento', 'url' => '/heating-list', 'icon' => 'body'],
-        ['title' => 'Perfil', 'url' => '/perfil', 'icon' => 'contact'],
         // ['title' => 'Grupos', 'url' => '/group-list', 'icon' => 'people'],
         // ['title' => 'Academias', 'url' => '/academy-list', 'icon' => 'construct']
     ];
 
     private $Aluno = [
-        ['title' => 'Home', 'url' => '/home', 'icon' => 'home'],
-        ['title' => 'Perfil', 'url' => '/perfil', 'icon' => 'contact'],
         //  ['title' => 'Aluno', 'url' => '/users-list', 'icon' => 'contact'],
         //  ['title' => 'Equipamento', 'url' => '/equipament-list', 'icon' => 'fitness'],
         //  ['title' => 'Fixa', 'url' => '/card-list', 'icon' => 'clipboard'],
