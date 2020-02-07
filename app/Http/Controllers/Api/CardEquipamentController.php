@@ -86,7 +86,7 @@ class CardEquipamentController extends Controller
         $data = $request->all();
         if ($idEquipament) {
             try {
-                return CardEquipamentLogController::destroy($idCard, $idEquipament);
+                CardEquipamentLogController::destroy($idCard, $idEquipament);
             } catch (\Throwable $th) {
                 return ['msg' => 'Não foi possivél salvar.', 'color' => 'warning'];
             }
@@ -98,6 +98,7 @@ class CardEquipamentController extends Controller
 
             $this->CardEquipament->update(
                 [
+                    'completed' => 1,
                     'rest' => $data['rest'],
                     'repetition' => $data['repetition'],
                     'weight' => $data['weight'],
