@@ -32,8 +32,8 @@ class CardEquipamentController extends Controller
             $this->CardEquipament->repetition = $data['repetition'];
             $this->CardEquipament->series = $data['series'];
             $this->CardEquipament->weight = $data['weight'];
-            $this->CardEquipament->side = $data['side'];
-            $this->CardEquipament->idCard =  $data['idCard'];
+            $this->CardEquipament->side = $data['side'] ?? 'A';
+            $this->CardEquipament->idCard = (int) $data['idCard'];
             $this->CardEquipament->completed = 0;
         } catch (\Throwable $th) {
             return ['msg' => 'Erro nos dados.', 'color' => 'warning'];
@@ -47,6 +47,55 @@ class CardEquipamentController extends Controller
     }
 
 
+    public function cardAttributes($idCard, $idEquipament)
+    {
+        if ($idEquipament) {
+            $CardEquipaments = CardEquipament::where('idCard', $idCard)->get();
+
+            /* foreach ($CardEquipaments as $a) {
+                $equipament = $a->getEquipaments;
+                if ($equipament->id == $idEquipament) {
+                    $this->Resultado['equipament'] = $equipament->id;
+                }
+            } */
+            foreach ($CardEquipaments as $key) {
+                $equipament = $key->getEquipaments;
+               // if ($equipament->id == $idEquipament) {
+                   /*  $this->Resultado[$key]['id'] = $key->id;
+                    $this->Resultado[$key]['name'] = $key->name;
+                    $this->Resultado[$key]['obs'] = $key->name; */
+               // }
+               if ($equipament->id == $idEquipament) {
+                $this->Resultado['equipament']['id'] = $equipament->id;
+                $this->Resultado['equipament']['name'] = $equipament->name;
+                $this->Resultado['equipament']['obs'] = $equipament->obs;
+            }
+            }
+
+            $this->Resultado['data'] = CardEquipament::where([
+                ['idCard', $idCard],
+                ['idEquipaments', $idEquipament]
+            ])->get();
+
+            return ['result' => [$this->Resultado]];
+        } else {
+            $Equipaments = CardEquipament::where('idCard', $idCard)->get();
+            $Retorno = [];
+            foreach ($Equipaments as $i => $Equipament) {
+                $Retorno[$i]['equipament'] = Equipament::where('id', $Equipament->idEquipaments)
+                    ->select('name', 'img', 'id')
+                    ->first();
+                $Retorno[$i]['dados'] = CardEquipament::where([
+                    ['idEquipaments', $Equipament->idEquipaments],
+                    ['idCard', $Equipament->idCard]
+                ])->select('weight', 'series', 'repetition')
+                    ->first();
+            }
+
+            return ['result' => $Retorno];
+        }
+    }
+
     public function show($idCard, $idEquipament = null)
     {
         if ($idEquipament) {
@@ -54,7 +103,7 @@ class CardEquipamentController extends Controller
 
             foreach ($CardEquipaments as $a) {
                 $equipament = $a->getEquipaments;
-                if ($equipament->id == $idEquipament) $this->Resultado['equipament'] = $equipament;
+                if ($equipament->id == $idEquipament) $this->Resultado['equipament'] = $equipament->id;
             }
 
             $this->Resultado['data'] = CardEquipament::where([

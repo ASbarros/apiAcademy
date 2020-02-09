@@ -20,6 +20,19 @@ class EquipamentController extends Controller
         return ['result' => Equipament::all()];
     }
 
+    public function cardAttributes()
+    {
+        $Equipaments = Equipament::all();
+        $Result = [];
+
+        foreach ($Equipaments as $key => $value) {
+            $Result[$key]['id'] = $value->id;
+            $Result[$key]['name'] = $value->name;
+            $Result[$key]['obs'] = $value->obs;
+        }
+        return ['result' => $Result];
+    }
+
     public function store(Request $request)
     {
         if (!$request->name) return ['color' => 'danger', 'msg' => 'Campo nome é obrigatório'];

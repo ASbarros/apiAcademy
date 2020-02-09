@@ -23,6 +23,7 @@ Route::group(['prefix' => 'cardsEquipaments'], function () {
     Route::get('/', 'Api\CardEquipamentController@index');
     Route::get('/create', 'Api\CardEquipamentController@create');
     Route::get('/{idCard}/{idEquipament?}', 'Api\CardEquipamentController@show');
+    Route::get('/cardAttributes/{idCard}/{idEquipament}', 'Api\CardEquipamentController@cardAttributes');
     Route::put('/{idCard}/{idEquipament?}', 'Api\CardEquipamentController@update');
     Route::delete('/{idCard}/{idEquipament}', 'Api\CardEquipamentController@destroy');
     Route::post('/', 'Api\CardEquipamentController@store');
@@ -80,6 +81,7 @@ Route::group(['prefix' => 'users'], function () {
 // equipamets
 Route::group(['prefix' => 'equipaments'], function () {
     Route::get('/', 'Api\EquipamentController@index');
+    Route::get('/cardAttributes', 'Api\EquipamentController@cardAttributes');
     Route::get('/{id}', 'Api\EquipamentController@show');
     Route::put('/{id}', 'Api\EquipamentController@update');
     Route::delete('/{id}', 'Api\EquipamentController@destroy');
